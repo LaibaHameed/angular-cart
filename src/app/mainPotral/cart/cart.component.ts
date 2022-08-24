@@ -10,19 +10,21 @@ import { NonVolatileServiceService } from 'src/app/sharedPotral/services/non-vol
 })
 export class CartComponent implements OnInit {
 
-  OnclickData: any = []; //step 22
+  OnclickData: any; //step 22
   DataServiceData: any = []; // step 26
   FilterData: any = []; // step 27
 
   constructor(
     private _MessengerService: MessengerServiceService, // step 20
-    private _DataService: DataServiceService, //step 25 
+    private _DataService: DataServiceService, //step 25
     private _NonVolatileServeice: NonVolatileServiceService, // step 32
-  ) { }
+  ) {}
 
 
   ngOnInit(): void {
     this.GetData(); //step 24
+    this.GetAllObjectFromDataService(); // step 41
+
   }
 
 
@@ -36,13 +38,18 @@ export class CartComponent implements OnInit {
 
   GetAllObjectFromDataService() { // step 28
     this.DataServiceData = this._DataService.getJsonData(); // step 29
+    // this.FilterData = this.DataServiceData.filter((Result:any)=>{  // step 39
+    //   return (Result._id === this.OnclickData)
+    // })
+    // console.log(this.FilterData);// step 40
 
     if (this.OnclickData === undefined) {  // step 31
       const localStorageData = this._NonVolatileServeice.GetProductToLocalStorage(); // step 33
       this.FilterData = this.DataServiceData.filter((Result: any) => { // step 34
         return (Result._id === localStorageData);
       })
-      console.log(this.OnclickData);
+      console.log(this.FilterData);
+      return
     }
 
     this.FilterData = this.DataServiceData.filter((Result: any) => { // step 37
