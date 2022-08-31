@@ -7,6 +7,7 @@ import { HeaderComponent } from './mainPotral/header/header.component';
 import { HomeComponent } from './mainPotral/home/home.component';
 import { ProductsComponent } from './mainPotral/products/products.component';
 import { CartComponent } from './mainPotral/cart/cart.component';
+import { DashboardComponent } from './ManagmentPotral/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CartComponent } from './mainPotral/cart/cart.component';
     HeaderComponent,
     HomeComponent,
     ProductsComponent,
-    CartComponent
+    CartComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

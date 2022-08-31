@@ -18,6 +18,8 @@ export class CartComponent implements OnInit {
   ProductQuantity:any;// step48
   SelectedQuantity=0; // step48
   CartArray:any=[];  // step48
+  getSaveDataFromLocalStorage: any;
+  NewCartArray: any;
 
   constructor(
     private _MessengerService: MessengerServiceService, // step 20
@@ -54,7 +56,7 @@ export class CartComponent implements OnInit {
         return (Result._id === localStorageData);
       })
       // step 53
-      this.ProductQuantity = this.FilterData[0].qty;
+      this.ProductQuantity = this.FilterData[0].qty
       console.log(this.FilterData);
       return
     }
@@ -63,8 +65,9 @@ export class CartComponent implements OnInit {
       return (Result._id === this.OnclickData);
     })
     // step 54
-    this.ProductQuantity = this.FilterData[0].qty;
     console.log(this.FilterData); // step 38
+    this.ProductQuantity = this.FilterData[0].qty;
+
   }
 
   ShowCart(){ // step45
@@ -80,9 +83,26 @@ export class CartComponent implements OnInit {
       this.CartArray.push(this.FilterData[0])
       this._NonVolatileServeice.addProductToLocalStorage(this.CartArray);
       this.OnclickData = undefined;
-      this._NonVolatileServeice.GetSaveProductToLocalStorage();
+      this.getSaveDataFromLocalStorage= this._NonVolatileServeice.GetSaveProductToLocalStorage();
       return
     }
+    if(Object.entries(localStorageDataCheck).length!==0 && this.OnclickData!== undefined){
+      this.NewCartArray.push(this.FilterData[0])
+      localStorageDataCheck.forEach((element:any)=>{
+        this.NewCartArray.push(element)
+      });
+      this._NonVolatileServeice.addProductToLocalStorage(this.NewCartArray)
+      this.OnclickData = undefined;
+      this.getSaveDataFromLocalStorage= this._NonVolatileServeice.GetSaveProductToLocalStorage();
+      return
+    }
+    localStorageDataCheck.map((element:any)=>{
+      if(this.FilterData[0].id === element.id){
+        element.NewQuantity++;
+        this.SelectedQuantity++;
+      }
+    })
+    // this.SelectedQuantity++
   }
 
   subtractQunatity(){ // step50
