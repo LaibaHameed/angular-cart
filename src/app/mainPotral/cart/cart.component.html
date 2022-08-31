@@ -22,14 +22,15 @@
                   <li>COD Available (All Over India)</li>
               </ul>
           </div>
-          <div class="col-md-7"> <img [src]=""  width="90%" height="95%"> </div>
+          <!--step 42 -->
+          <div class="col-md-7"> <img *ngFor="let item of FilterData[0].Image" [src]="item"  width="90%" height="95%"> </div>
       </div>
   </div>
   <div class="footer d-flex flex-column mt-5">
       <div class="row r4">
           <div class="col-md-2 myt des"><a href="#">Description</a></div>
           <div class="col-md-2 myt "><a href="#">Review</a></div>
-          <div class="col-md-2 mio offset-md-4"><button type="button" class="btn btn-outline-success text-light"><a href="#">Add to Cart</a></button></div>
+          <div class="col-md-2 mio offset-md-4"><button type="button" class="btn btn-outline-success text-light" (click)="ShowCart()"><a>Add to Cart</a></button></div>
           <div class="col-md-2 myt "><button type="button" class="btn btn-outline-success text-light"><a href="#">BUY NOW</a></button></div>
       </div>
   </div>
@@ -46,9 +47,8 @@
 
 
 
-
-
-<section class="h-100 h-custom my-3">
+<!-- step46 -->
+<section class="h-100 h-custom my-3" *ngIf="CartBox === true">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
@@ -65,8 +65,9 @@
 
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
+                        <!--step43  -->
                         <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
+                        *ngFor="let item of FilterData[0].Image" [src]="item"
                           class="img-fluid rounded-3" alt="Cotton T-shirt">
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">
@@ -74,17 +75,22 @@
                         <h6 class="text-black mb-0">Cotton T-shirt</h6>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="bi bi-dash-lg text-dark"></i>
+                        <!-- step51 -->
+                        <button class="btn btn-link px-2 addQunatity"
+                        (click)="addQunatity()" >
+                        <i class="bi bi-plus-lg text-dark"></i>
+
                         </button>
+                        <span >{{SelectedQuantity}}</span>
 
-                        <input id="form1" min="0" name="quantity" value="1" type="number"
-                          style="width: 40px;" />
+                        <!-- <input id="form1" min="0" name="quantity" value="1" type="number"
+                          style="width: 40px;" /> -->
+                          <!--  step52 -->
+                          <!--  step52 -->
+                        <button class="btn btn-link px-2 "
+                        (click)="subtractQunatity()">
+                          <!-- <i class="bi bi-dash-lg text-dark"></i> -->
 
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="bi bi-plus-lg text-dark"></i>
                         </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -97,74 +103,7 @@
 
                     <hr class="my-4">
 
-                    <!-- <div class="row mb-4 d-flex justify-content-between align-items-center">
-                      <div class="col-md-2 col-lg-2 col-xl-2">
-                        <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
-                          class="img-fluid rounded-3" alt="Cotton T-shirt">
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h6 class="text-muted">Shirt</h6>
-                        <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
-
-                        <input id="form1" min="0" name="quantity" value="1" type="number"
-                          class="form-control form-control-sm" />
-
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0">€ 44.00</h6>
-                      </div>
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                      </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                      <div class="col-md-2 col-lg-2 col-xl-2">
-                        <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp"
-                          class="img-fluid rounded-3" alt="Cotton T-shirt">
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h6 class="text-muted">Shirt</h6>
-                        <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
-
-                        <input id="form1" min="0" name="quantity" value="1" type="number"
-                          class="form-control form-control-sm" />
-
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0">€ 44.00</h6>
-                      </div>
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                      </div>
-                    </div>
-
-                    <hr class="my-4"> -->
-
+                    <!--  -->
                     <div class="pt-5">
                       <h6 class="mb-0"><a routerLink="/products" class="text-body"><i class="bi bi-arrow-left me-2"></i>Back to shop</a></h6>
                     </div>

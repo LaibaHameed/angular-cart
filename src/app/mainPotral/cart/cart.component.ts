@@ -13,6 +13,11 @@ export class CartComponent implements OnInit {
   OnclickData: any; //step 22
   DataServiceData: any = []; // step 26
   FilterData: any = []; // step 27
+  CartBox:boolean=false; // step44
+  Quantity:any; // step47
+  ProductQuantity:any;// step48
+  SelectedQuantity=0; // step48
+  CartArray:any=[];  // step48
 
   constructor(
     private _MessengerService: MessengerServiceService, // step 20
@@ -48,6 +53,8 @@ export class CartComponent implements OnInit {
       this.FilterData = this.DataServiceData.filter((Result: any) => { // step 34
         return (Result._id === localStorageData);
       })
+      // step 53
+      this.ProductQuantity = this.FilterData[0].qty;
       console.log(this.FilterData);
       return
     }
@@ -55,7 +62,30 @@ export class CartComponent implements OnInit {
     this.FilterData = this.DataServiceData.filter((Result: any) => { // step 37
       return (Result._id === this.OnclickData);
     })
-
+    // step 54
+    this.ProductQuantity = this.FilterData[0].qty;
     console.log(this.FilterData); // step 38
+  }
+
+  ShowCart(){ // step45
+    this.CartBox = true
+  }
+
+  addQunatity(){ // step49
+    const localStorageDataCheck = this._NonVolatileServeice.GetSaveProductToLocalStorage();
+    if(this.SelectedQuantity >= this.ProductQuantity){
+      return
+    }
+    if(Object.entries(localStorageDataCheck).length===0){
+      this.CartArray.push(this.FilterData[0])
+      this._NonVolatileServeice.addProductToLocalStorage(this.CartArray);
+      this.OnclickData = undefined;
+      this._NonVolatileServeice.GetSaveProductToLocalStorage();
+      return
+    }
+  }
+
+  subtractQunatity(){ // step50
+
   }
 }
