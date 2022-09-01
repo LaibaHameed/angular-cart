@@ -4,11 +4,11 @@ import { MessengerServiceService } from 'src/app/sharedPotral/services/messenger
 import { NonVolatileServiceService } from 'src/app/sharedPotral/services/non-volatile-service.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-cart-element',
+  templateUrl: './cart-element.component.html',
+  styleUrls: ['./cart-element.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartElementComponent implements OnInit {
 
   OnclickData: any; //step 22
   DataServiceData: any = []; // step 26

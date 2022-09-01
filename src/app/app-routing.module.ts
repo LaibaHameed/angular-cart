@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartElementComponent } from './mainPotral/cart-element/cart-element.component';
 import { CartComponent } from './mainPotral/cart/cart.component';
 import { HomeComponent } from './mainPotral/home/home.component';
 import { ProductsComponent } from './mainPotral/products/products.component';
@@ -10,7 +11,9 @@ const routes: Routes = [
   {path: 'home', component:HomeComponent},
   {path: 'products', component:ProductsComponent},
   {path: 'cart', component:CartComponent},
-  {path: 'dashboard', component:DashboardComponent}
+  {path: 'dashboard', component:DashboardComponent},
+  {path: 'cart-element', component:CartElementComponent},
+
 ];
 
 @NgModule({

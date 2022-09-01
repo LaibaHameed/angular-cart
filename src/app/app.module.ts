@@ -8,6 +8,7 @@ import { HomeComponent } from './mainPotral/home/home.component';
 import { ProductsComponent } from './mainPotral/products/products.component';
 import { CartComponent } from './mainPotral/cart/cart.component';
 import { DashboardComponent } from './ManagmentPotral/dashboard/dashboard.component';
+import { CartElementComponent } from './mainPotral/cart-element/cart-element.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DashboardComponent } from './ManagmentPotral/dashboard/dashboard.compon
     HomeComponent,
     ProductsComponent,
     CartComponent,
-    DashboardComponent
+    DashboardComponent,
+    CartElementComponent
   ],
   imports: [
     BrowserModule,
